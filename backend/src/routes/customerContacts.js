@@ -1,11 +1,9 @@
-const { Router } = require ('express')
-const customerRouter = Router()
+const express = require ('express')
+const customerRouter = express.Router()
+const controller = require('../controllers/customerController')
 
-customerRouter.route('/contacts/customer/:uuid')
-    .get((req, res) => res.json({'message':'All the customer contacts'}))
-    .post((req, res) => res.json({'message':'New customer contact created'}))
-
-customerRouter.route('/contacts/customer/:uuid/:id')
-    .get((req, res) => res.json({'message':'Customer contact details'}))
+customerRouter.get('contacts/customer/:uuid', controller.getCustomerContacts)
+customerRouter.post('contacts/customer/:uuid', controller.createCustomerContact)
+customerRouter.get('contacts/customer/:uuid/:id', controller.getCustomerContactById)
 
 module.exports = customerRouter;

@@ -1,11 +1,9 @@
-const { Router } = require ('express')
-const hospitalRouter = Router()
+const express = require ('express')
+const hospitalRouter = express.Router()
+const controller = require('../controllers/hospitalController')
 
-hospitalRouter.route('/contacts/hospital')
-    .get((req, res) => res.json({'message':'All the hospital contacts'}))
-    .post((req, res) => res.json({'message':'New hospital contact created'}))
-
-    hospitalRouter.route('/contacts/hospital/:id')
-    .get((req, res) => res.json({'message':'Hospital contact details'}))
+hospitalRouter.get('contacts/hospital/', controller.getHospitalContacts)
+hospitalRouter.post('contacts/hospital', controller.createHospitalContact)
+hospitalRouter.get('contacts/hospital/:id', controller.getHospitalContactById)
 
 module.exports = hospitalRouter;

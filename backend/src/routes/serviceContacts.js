@@ -1,11 +1,9 @@
-const { Router } = require ('express')
-const serviceRouter = Router()
+const express = require ('express')
+const serviceRouter = express.Router()
+const controller = require('../controllers/serviceController')
 
-serviceRouter.route('/contacts/service/:idService')
-    .get((req, res) => res.json({'message':'All the service contacts'}))
-    .post((req, res) => res.json({'message':'New service contact created'}))
-
-serviceRouter.route('/contacts/service/:idService/:id')
-    .get((req, res) => res.json({'message':'Service contact details'}))
+serviceRouter.get('contacts/service/:idService', controller.getServiceContacts)
+serviceRouter.post('contacts/service/:idService', controller.createServiceContact)
+serviceRouter.get('contacts/service/:idService/:id', controller.getServiceContactById)
 
 module.exports = serviceRouter;

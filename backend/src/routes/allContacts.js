@@ -1,8 +1,8 @@
-const { Router } = require ('express')
-const allContactsRouter = Router()
+const express = require ('express')
+const allContactsRouter = express.Router()
+const controller = require('../controllers/allContactsController')
 
-allContactsRouter.route('/contacts/:id')
-    .put((req, res) => res.json({'message':'Contact updated'}))
-    .delete((req, res) => res.json({'message':'Contact deleted'}))
+allContactsRouter.put('contacts/:id', controller.updateContact)
+allContactsRouter.delete('contacts/:id', controller.deleteContact)
 
 module.exports = allContactsRouter;

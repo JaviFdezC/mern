@@ -1,11 +1,9 @@
-const { Router } = require ('express')
-const adminRouter = Router()
+const express = require ('express')
+const adminRouter = express.Router()
+const controller = require('../controllers/adminController')
 
-adminRouter.route('/contacts/admin')
-    .get((req, res) => res.json({'message':'All the qdmin contacts'}))
-    .post((req, res) => res.json({'message':'New admin contact created'}))
-
-adminRouter.route('/contacts/admin/:id')
-    .get((req, res) => res.json({'message':'Admin contact details'}))
+adminRouter.get('contacts/admin', controller.getAdminContacts)
+adminRouter.post('contacts/admin', controller.createAdminContact)
+adminRouter.get('contacts/admin/:id', controller.getAdminContactById)
 
 module.exports = adminRouter;
