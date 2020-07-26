@@ -2,8 +2,8 @@ const express = require ('express')
 const serviceRouter = express.Router()
 const controller = require('../controllers/serviceController')
 
-serviceRouter.get('contacts/service/:idService', controller.getServiceContacts)
-serviceRouter.post('contacts/service/:idService', controller.createServiceContact)
-serviceRouter.get('contacts/service/:idService/:id', controller.getServiceContactById)
+serviceRouter.get('/', controller.getServiceContacts)
+serviceRouter.post('/', controller.createServiceContact)
+serviceRouter.get('/:id', controller.getServiceContactById)
 
 module.exports = serviceRouter;
