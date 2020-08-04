@@ -4,30 +4,17 @@ import axios from 'axios'
 export default class CreateContact extends Component {
 
     state = {
-        contacts: [],
         label: '',
         telephone: ''
     }
 
-    async componentDidMount() {
-        this.getContacts()
-    }
-
-    getContacts = async () => {
-        const res = await axios.get('http://localhost:4000/contacts/admin')
-        this.setState({contacts: res.data})
-    }
-
-    onChangeContact = (e) => {
+    onInputChange = (e) => {
         this.setState({
             [e.target.name]:e.target.value
-            // label: e.target.value,
-            // telephone: e.target.value
         })
     }
 
     onSubmit = async e => {
-        
         await axios.post(
             'http://localhost:4000/contacts/admin',
             {
@@ -35,12 +22,11 @@ export default class CreateContact extends Component {
                 telephone: this.state.telephone
             }
         )
-        this.setState({label: ''})
-        this.setState({telephone: ''})
-        this.getContacts()
+        this.setState({
+            label: '',
+            telephone: ''
+        })
         e.preventDefault()
-        // console.log(res)
-        
     }
 
     render() {
@@ -48,18 +34,18 @@ export default class CreateContact extends Component {
             <div className="row">
                 <div className="col-md-6 offset-md-3">
                     <div className="card cardbody">
-                        <h3>Create new contact</h3>
+                        <h4>Create new contact</h4>
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <input type="text" 
                                         className="form-control"
-                                        onChange={this.onChangeContact}
+                                        onChange={this.onInputChange}
                                         name="label"
                                         value={this.state.label}
                                         placeholder="Name"/>
                                 <input type="text" 
                                         className="form-control"
-                                        onChange={this.onChangeContact}
+                                        onChange={this.onInputChange}
                                         name="telephone"
                                         placeholder="Telephone"/>
                                 <button type="submit" className="btn btn-primary">
@@ -69,17 +55,6 @@ export default class CreateContact extends Component {
                         </form>
                     </div>
                 </div>
-                {/* <div className="col-md-8">
-                    <div className="list-group">
-                        {
-                            this.state.contacts.map(contact => (
-                                <li className="list-group-item list-group-item-action" key={contact._id}>
-                                    {contact.label}
-                                </li>)
-                            )
-                        }
-                    </div>
-                </div> */}
             </div>
         )
     }
