@@ -11,10 +11,11 @@ function App() {
   return (
     <Router>
       <Navigation/>
-      
-      <Route path='/' exact component={ContactsList}/>
-      <Route path='/admin' component={CreateContact}/>
-      <Route path='/edit/:id' component={CreateContact}/>
+      <div className="container p-4">
+        <Route path='/' exact component={ContactsList}/>
+        <Route path='/admin' component={CreateContact}/>
+        <Route path='/edit/:id' component={CreateContact}/>
+      </div>
     </Router>
   );
 }
