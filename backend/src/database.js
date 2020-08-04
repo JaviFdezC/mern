@@ -5,7 +5,7 @@ const URI = process.env.MONGODB_URI
     : 'mongodb://localhost/testdatabase'
 
 mongoose.connect(URI, {
-    useNewUrlParser:true,
+    useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true

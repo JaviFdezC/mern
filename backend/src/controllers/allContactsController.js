@@ -2,9 +2,8 @@ const allContactsController = {}
 const Contact = require('../models/contact')
 
 allContactsController.updateContact = async (req, res) => {
-    const { type, label, telephone } = req.body
+    const { label, telephone } = req.body
     await Contact.findOneAndUpdate(req.params.id, {
-        type: type.value,
         label,
         telephone
     })
